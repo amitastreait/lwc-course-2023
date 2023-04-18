@@ -1,0 +1,12 @@
+<template>
+    <lightning-card  variant="Narrow"  title="Hello" icon-name="standard:account">
+        <div class="slds-p-horizontal_small">
+            {itemName}
+            <br/>
+            <lightning-button variant="brand" label="Click Me" title="Click Me" 
+                onclick={handleClick}>
+            </lightning-button>
+        </div>
+        <div slot="footer">Card Footer</div>
+    </lightning-card>
+</template>

@@ -1,0 +1,158 @@
+<template>
+    <lightning-card title="My Reminders" icon-name="standard:task">
+        <lightning-button label="Add Reminder" title="Add Reminder" slot="actions" onclick={handleClick}></lightning-button>
+        <lightning-button label="Refresh" icon-name="action:refresh" title="Refresh" slot="actions" onclick={fetechTodos}></lightning-button>
+        <div class="filters-container">
+            <lightning-layout multiple-rows>
+                <lightning-layout-item size="12" padding="around-small" small-device-size="12" medium-device-size="6" large-device-size="3" >
+                    <lightning-input value={filters.Subject} name="Subject" onchange={handleChange} placeholder="enter subject"
+                        type="search" variant="label-hidden" label="Subject" >
+                    </lightning-input>
+                </lightning-layout-item>
+                <lightning-layout-item size="12" padding="around-small" small-device-size="12" medium-device-size="6" large-device-size="3">
+                    <lightning-combobox
+                        name="Status"
+                        label="Status"
+                        variant="label-hidden"
+                        placeholder="Select Status"
+                        value={filters.Status}
+                        options={statusOptions}
+                        onchange={handleChange} >
+                    </lightning-combobox>
+                </lightning-layout-item>
+                <lightning-layout-item size="12" padding="around-small" small-device-size="12" medium-device-size="6" large-device-size="3">
+                    <lightning-combobox
+                        name="Priority"
+                        label="Priority"
+                        variant="label-hidden"
+                        value={filters.Priority}
+                        placeholder="Select Priority"
+                        options={priorityOptions}
+                        onchange={handleChange} >
+                    </lightning-combobox>
+                </lightning-layout-item>
+                <lightning-layout-item size="12" padding="around-small" small-device-size="12" medium-device-size="6" large-device-size="3">
+                    <lightning-button variant="brand" label="Apply Filters" title="Apply Filters" onclick={handleApplyFilter}></lightning-button>
+                    &nbsp;&nbsp;&nbsp;
+                    <a class="clear-filters" href="JavaScript:void(0);" onclick={handleClearFilter}>Clear Filters</a>
+                </lightning-layout-item>
+            </lightning-layout>
+        </div>
+        <div class="slds-m-around_larger">
+            <!-- Reminder List -->
+            <lightning-layout multiple-rows>
+                <template for:each={toDoList} for:item="todo" for:index="index" lwc:if={toDoList}>
+                    <lightning-layout-item key={todo.Id} size="12" small-device-size="12" medium-device-size="6" large-device-size="4" >
+                        <div class="parent-container">
+                            <div class="heading-container" style={todo.headingStyle}>
+                                {todo.Subject}
+                            </div>
+                            <div class="text-container">
+                                <p style={todo.headingStyle}><strong>Due Date:</strong> {todo.ActivityDate}</p>
+                                <p><strong>Description:</strong> {todo.Description} </p>
+                            </div>
+                            <div class="button-container">
+                                <lightning-icon data-record-id={todo.Id} icon-name="action:preview" size="xx-small" onclick={handleRecordPage} ></lightning-icon>
+                                &nbsp;
+                                <lightning-icon data-record-id={todo.Id} icon-name="action:edit" size="xx-small" onclick={handleRecordEditPage} ></lightning-icon>
+                            </div>
+                        </div>
+                    </lightning-layout-item>
+                </template>
+            </lightning-layout>
+            <!--
+            <div class="slds-grid slds-wrap">
+                <template for:each={toDoList} for:item="todo" for:index="index" lwc:if={toDoList}>
+                    <div key={todo.Id} class="slds-col slds-size_1-of-3">
+                        <div class="parent-container">
+                            <div class="heading-container" style={todo.headingStyle}>
+                                {todo.Subject}
+                            </div>
+                            <div class="text-container">
+                                <p style={todo.headingStyle}><strong>Due Date:</strong> {todo.ActivityDate}</p>
+                                <p><strong>Description:</strong> {todo.Description} </p>
+                            </div>
+                            <div class="button-container">
+                                <lightning-icon data-record-id={todo.Id} icon-name="action:preview" size="xx-small" onclick={handleRecordPage} ></lightning-icon>
+                                &nbsp;
+                                <lightning-icon data-record-id={todo.Id} icon-name="action:edit" size="xx-small" onclick={handleRecordEditPage} ></lightning-icon>
+                            </div>
+                        </div>
+                    </div>
+                </template>
+            </div>
+            -->
+        </div>
+    </lightning-card>
+
+    <div class="modal-container" if:true={showModal}>
+        <section role="dialog" tabindex="-1" aria-modal="true" aria-labelledby="modal-heading-01" class="slds-modal slds-fade-in-open">
+        <div class="slds-modal__container">
+            <button class="slds-button slds-button_icon slds-modal__close slds-button_icon-inverse">
+                <svg class="slds-button__icon slds-button__icon_large" aria-hidden="true">
+                    <use xlink:href="/assets/icons/utility-sprite/svg/symbols.svg#close"></use>
+                </svg>
+                <span class="slds-assistive-text">Cancel and close</span>
+            </button>
+            <div class="slds-modal__header">
+                <h1 id="modal-heading-01" class="slds-modal__title slds-hyphenate">Manage New Reminder</h1>
+            </div>
+            <div class="slds-modal__content slds-p-around_medium" id="modal-content-id-1">
+                <c-create-task-component onsuccess={handleSuccess}></c-create-task-component>
+            </div>
+            <div class="slds-modal__footer">
+                <button class="slds-button slds-button_neutral" onclick={handleCancel} aria-label="Cancel and close">Cancel</button>
+            </div>
+        </div>
+        </section>
+        <div class="slds-backdrop slds-backdrop_open" role="presentation"></div>
+    </div>
+
+    <div class="modal-container" if:true={selectedRecord}>
+        <section role="dialog" tabindex="-1" aria-modal="true" aria-labelledby="modal-heading-01" class="slds-modal slds-fade-in-open">
+        <div class="slds-modal__container">
+            <button class="slds-button slds-button_icon slds-modal__close slds-button_icon-inverse">
+                <svg class="slds-button__icon slds-button__icon_large" aria-hidden="true">
+                    <use xlink:href="/assets/icons/utility-sprite/svg/symbols.svg#close"></use>
+                </svg>
+                <span class="slds-assistive-text">Cancel and close</span>
+            </button>
+            <div class="slds-modal__header">
+                <h1 id="modal-heading-02" class="slds-modal__title slds-hyphenate">View Reminder</h1>
+            </div>
+            <div class="slds-modal__content slds-p-around_medium" id="modal-content-id-2">
+                <c-view-task record={selectedRecord}></c-view-task>
+            </div>
+            <div class="slds-modal__footer">
+                <button class="slds-button slds-button_neutral" onclick={handleCancel} aria-label="Cancel and close">Cancel</button>
+            </div>
+        </div>
+        </section>
+        <div class="slds-backdrop slds-backdrop_open" role="presentation"></div>
+    </div>
+
+    <div class="modal-container" if:true={editModal}>
+        <section role="dialog" tabindex="-1" aria-modal="true" aria-labelledby="modal-heading-01" class="slds-modal slds-fade-in-open">
+        <div class="slds-modal__container">
+            <button class="slds-button slds-button_icon slds-modal__close slds-button_icon-inverse">
+                <svg class="slds-button__icon slds-button__icon_large" aria-hidden="true">
+                    <use xlink:href="/assets/icons/utility-sprite/svg/symbols.svg#close"></use>
+                </svg>
+                <span class="slds-assistive-text">Cancel and close</span>
+            </button>
+            <div class="slds-modal__header">
+                <h1 id="modal-heading-03" class="slds-modal__title slds-hyphenate">Edit Reminder</h1>
+            </div>
+            <div class="slds-modal__content slds-p-around_medium" id="modal-content-id-3">
+                <c-create-task-component onsuccess={handleSuccess} record-id={selectedEditRecord.Id} record-to-create={selectedEditRecord}>
+                </c-create-task-component>
+            </div>
+            <div class="slds-modal__footer">
+                <button class="slds-button slds-button_neutral" onclick={handleCancel} aria-label="Cancel and close">Cancel</button>
+            </div>
+        </div>
+        </section>
+        <div class="slds-backdrop slds-backdrop_open" role="presentation"></div>
+    </div>
+
+</template>

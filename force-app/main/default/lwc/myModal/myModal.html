@@ -1,0 +1,30 @@
+<!-- c/myModal.html -->
+<template>
+    <lightning-modal-header label={label}></lightning-modal-header>
+    <lightning-modal-body>
+        <lightning-record-edit-form id="recordViewForm"
+                    record-id="0031y00000UIyA5AAL"
+                    object-api-name="Contact">
+            <lightning-messages></lightning-messages>
+            <lightning-input-field field-name="FirstName"></lightning-input-field>
+            <lightning-input-field field-name="LastName"></lightning-input-field>
+            <lightning-input-field field-name="Birthdate"></lightning-input-field>
+            <lightning-input-field field-name="Phone"></lightning-input-field>
+            <lightning-button type="submit" label="Update record"></lightning-button>
+        </lightning-record-edit-form>
+    </lightning-modal-body>
+    <lightning-modal-footer>
+        <lightning-button
+            class="slds-button"
+            variant="neutral"
+            label="Cancel"
+            onclick={handleDismiss}
+        ></lightning-button>                
+        <lightning-button
+            class="slds-button slds-m-left_x-small"
+            variant="brand"
+            label="Save"
+            onclick={handleOkay}
+        ></lightning-button>
+    </lightning-modal-footer>
+</template>

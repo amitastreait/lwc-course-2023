@@ -1,0 +1,39 @@
+.parent-container{
+    background: lightblue;
+    position: relative;
+    height: 220px;
+    margin: 12px;
+    padding: 12px;
+    border-radius: 12px;
+    font-family: 'Salesforce Sans';
+}
+
+.heading-container{
+    text-align: center;
+    font-weight: bold;
+    font-size: 20px;
+    font-family: 'Salesforce Sans';
+}
+.text-container{
+    font-family: 'Salesforce Sans';
+    line-height: 2;
+    margin: 5px;
+}
+
+.button-container{
+    position: absolute;
+    bottom: 5px;
+    text-align: center;
+    right: 50%;
+}
+.button-container:hover{
+    cursor: pointer;
+}
+.clear-filters{
+    text-decoration: none;
+}
+
+.clear-filters:hover{
+    cursor: pointer;
+    text-decoration: none;
+}

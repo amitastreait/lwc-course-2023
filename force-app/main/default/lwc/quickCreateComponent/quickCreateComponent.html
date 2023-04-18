@@ -1,0 +1,29 @@
+<template>
+    <lightning-card>
+        <lightning-spinner alternative-text="Loading" size="small" variant="brand" if:true={areDetailsVisible}></lightning-spinner>
+        <template lwc:if={length}>
+            <div class="slds-m-around_medium">
+                <lightning-record-form
+                    object-api-name={objApiName}
+                    fields={fieldsToCreate}
+                    onsuccess={handleSuccess}
+                    onerror={handleError}
+                    columns="2"
+                    mode="edit"
+                    onload={handleLoad}
+                >
+                </lightning-record-form>
+            </div>
+        </template>
+        <template lwc:else>
+            <div class="slds-m-around_medium" style={messageStyle}>
+                <p>No Metadata is configured. Please contact your admin.</p>
+                <p>Here is the current configuration, that you can share with your Admin.</p>
+                <br/>
+                <li>Object API Name : <strong>{objApiName}</strong></li>
+                <li>Place to be Used : <strong>{placeToBeUsed}</strong></li>
+                <li>Purspose Used For : <strong>Add New Record</strong></li>
+            </div>
+        </template>
+    </lightning-card>
+</template>

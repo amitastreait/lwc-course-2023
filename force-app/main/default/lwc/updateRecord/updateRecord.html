@@ -1,0 +1,13 @@
+<template>
+    <lightning-card  variant="Narrow"  title="Update Contact" icon-name="standard:contact">
+        <div class="slds-m-around_large">
+            <lightning-input type="text" label="First Name" name="FirstName" value={firstName} onchange={handleChange} ></lightning-input>
+            <lightning-input type="text" label="Last Name" name="LastName" value={lastName} onchange={handleChange} ></lightning-input>
+            <lightning-input type="text" label="Email" name="Email" value={email} onchange={handleChange} ></lightning-input>
+        </div>
+        <div class="slds-m-around_large">
+            <lightning-button variant="brand" label="Update Record" onclick={handleUpdate}></lightning-button>
+        </div>
+        <div slot="footer">Card Footer</div>
+    </lightning-card>
+</template>

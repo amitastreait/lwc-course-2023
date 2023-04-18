@@ -1,0 +1,48 @@
+<template>
+    <lightning-spinner variant="brand" size="small" lwc:if={isLoading}></lightning-spinner>
+    <lightning-layout multiple-rows>
+        <lightning-layout-item size="12" padding="around-small" small-device-size="12" medium-device-size="6" large-device-size="6" >
+            <lightning-input value={recordToCreate.Subject} type="text" label="Subject" name="Subject" required="true" onchange={handleChange}
+                message-when-value-missing="⚠️ Subject is required for creating the ToDo Item"
+            ></lightning-input>
+        </lightning-layout-item>
+        <lightning-layout-item size="12" padding="around-small" small-device-size="12" medium-device-size="6" large-device-size="6">
+            <lightning-input value={recordToCreate.ActivityDate}  type="date" label="Due Date" name="ActivityDate" required="true" onchange={handleChange}></lightning-input>
+        </lightning-layout-item>
+    </lightning-layout>
+    <lightning-layout multiple-rows>
+        <lightning-layout-item size="12" padding="around-small" small-device-size="12" medium-device-size="6" large-device-size="6" >
+            <lightning-combobox
+                name="Status"
+                label="Status"
+                value={recordToCreate.Status}
+                placeholder="Select Status"
+                options={statusOptions}
+                required="true"
+                onchange={handleChange} >
+            </lightning-combobox>
+        </lightning-layout-item>
+        <lightning-layout-item size="12" padding="around-small" small-device-size="12" medium-device-size="6" large-device-size="6">
+            <lightning-combobox
+                name="Priority"
+                label="Priority"
+                placeholder="Select Priority"
+                options={priorityOptions}
+                required="true"
+                value={recordToCreate.Priority} 
+                onchange={handleChange} >
+            </lightning-combobox>
+        </lightning-layout-item>
+    </lightning-layout>
+    <lightning-layout multiple-rows>
+        <lightning-layout-item size="12" padding="around-small" small-device-size="12" medium-device-size="12" large-device-size="12" >
+            <lightning-textarea value={recordToCreate.Description} name="Description" label="Comments" onchange={handleChange}></lightning-textarea>
+        </lightning-layout-item>
+    </lightning-layout>
+    <lightning-layout multiple-rows>
+        <div class="slds-align_absolute-center slds-p_around_small">
+            <lightning-button label="Submit ToDo Item" title="Submit ToDo Item" variant="brand" onclick={handleSubmit}>
+            </lightning-button>
+        </div>
+    </lightning-layout>
+</template>

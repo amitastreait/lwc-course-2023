@@ -1,0 +1,13 @@
+<!-- c/myApp.html -->
+<template>
+    <lightning-card  variant="Narrow" title="My Modal" icon-name="standard:account">
+        <div class="slds-p-around_small">
+            <lightning-button
+                onclick={handleClick}
+                aria-haspopup="dialog"
+                label="Open My Modal">
+            </lightning-button>
+            <p class="slds-p-top_small">Result: {result}</p>
+        </div>
+    </lightning-card>
+</template>

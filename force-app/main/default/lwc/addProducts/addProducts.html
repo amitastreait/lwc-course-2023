@@ -1,0 +1,109 @@
+<template>
+    <lightning-card title="Manage Products" icon-name="standard:product">
+
+        <div if:true={errorMessage} class="slds-notify slds-notify_alert slds-alert_error" role="alert">
+            <span class="slds-assistive-text">error</span>
+            <span class="slds-icon_container slds-icon-utility-error slds-m-right_x-small" title="Description of icon when needed">
+                <lightning-icon icon-name="action:error" size="xx-small"></lightning-icon>
+            </span>
+            <h2>
+                {errorMessage}
+            </h2>
+            <div class="slds-notify__close">
+                <button class="slds-button slds-button_icon slds-button_icon-small slds-button_icon-inverse" title="Close">
+                    <svg class="slds-button__icon" aria-hidden="true">
+                        <use xlink:href="/assets/icons/utility-sprite/svg/symbols.svg#close"></use>
+                    </svg>
+                    <span class="slds-assistive-text">Close</span>
+                </button>
+            </div>
+        </div>
+
+
+        <c-choose-pricebook if:true={showModal} parent-id={recordId} parent-object-api-name={objectApiName}
+            oncancel={handleCancel} onsuccess={handleSave} >
+        </c-choose-pricebook>
+
+        <div if:false={priceBook2Id} class="slds-m-around_large">
+            <p class="slds-m-top_small">
+                Select a Price Book to associate with this {objectApiName}. You can add products only from the Price Book you associate with this {objectApiName}.
+            </p>
+            <p class="slds-m-top_small">Changing the Price Book deletes all products from the {objectApiName}.</p>
+            <div class="slds-m-top_small">
+                <lightning-button variant="brand" label="Choose Pricebook" title="Choose Pricebook" onclick={handeChoosePriceBook}></lightning-button>
+            </div>
+        </div>
+        <lightning-spinner size="small" variant="brand" if:true={isLoading}></lightning-spinner>
+        
+        <lightning-button if:true={priceBook2Id} variant="brand" label="+1 More Item" title="+1 More Item" slot="actions" onclick={addRow}></lightning-button>
+        &nbsp;&nbsp;
+        <lightning-button if:true={priceBook2Id} variant="brand" label="Submit Products" title="Submit Products" slot="actions" onclick={submitRecords}></lightning-button>
+        
+        <table if:true={priceBook2Id} class="slds-table slds-table_cell-buffer slds-no-row-hover slds-table_bordered">
+            <thead>
+                <tr class="slds-line-height_reset">
+                    <th class="" scope="col">
+                        <div class="slds-truncate" title="Product">Product</div>
+                    </th>
+                    <th class="" scope="col">
+                        <div class="slds-truncate" title="Quantity">Quantity</div>
+                    </th>
+                    <th class="" scope="col">
+                        <div class="slds-truncate" title="Sales Price">Sales Price</div>
+                    </th>
+                    <th class="" scope="col">
+                        <div class="slds-truncate" title="Date">Date</div>
+                    </th>
+                    <th class="" scope="col">
+                        <div class="slds-truncate" title="Line Description">Line Description</div>
+                    </th>
+                    <th class="" scope="col">
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                <template for:each={records} for:item="record" for:index="index" if:true={records}>
+                    <tr key={record.Id} class="slds-hint-parent">
+                        <th scope="row">
+                            <c-search-component
+                                if:false={record.Id}
+                                obj-name="Product2"
+                                icon-name="standard:product"
+                                label-name="Product"
+                                placeholder="Search Product" 
+                                fields={fields}
+                                display-fields={displayFields}
+                                parent-a-p-i-name="Product2Id"
+                                index={index}
+                                onlookup={handleLookup} >
+                            </c-search-component>
+                            <div if:true={record.Id}>
+                                <a href="JavaScript:void(0);" data-record-id={record.Id} onclick={handleDetailPage}>
+                                    {record.Product2.Name}
+                                </a>
+                            </div>
+                        </th>
+                        <td >
+                            <lightning-input message-when-value-missing="Provide the valid quantity" data-index={index} value={record.Quantity} type="number" variant="label-hidden" label="Quantity" name="Quantity" required="true" onchange={handleChange} ></lightning-input>
+                        </td>
+                        <td >
+                            <lightning-input message-when-value-missing="Provide the valid Unit Price" data-index={index} value={record.UnitPrice} type="number" variant="label-hidden" formatter="currency" step="0.01" label="Sales Price" name="UnitPrice" required="true" onchange={handleChange} ></lightning-input>
+                        </td>
+                        <td >
+                            <lightning-input data-index={index} value={record.ServiceDate} type="date" variant="label-hidden" label="Date" name="ServiceDate" onchange={handleChange} required="true" ></lightning-input>
+                        </td>
+                        <td >
+                            <lightning-textarea data-index={index} value={record.Description} variant="label-hidden" name="Description" label="Description" onchange={handleChange} ></lightning-textarea>
+                        </td>
+                        <td >
+                            <lightning-icon data-index={index} data-record-id={record.Id}
+                                class="delete-icon" size="xx-small" icon-name="action:delete"
+                                if:true={index} onclick={handleRemove}>
+                            </lightning-icon>
+                        </td>
+                    </tr>
+                </template>
+            </tbody>
+        </table>
+    </lightning-card>
+</template>

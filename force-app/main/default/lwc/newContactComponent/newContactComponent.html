@@ -1,0 +1,21 @@
+<template>
+    <lightning-card  variant="Narrow" >
+        <div class="slds-p-around_large">
+            <lightning-input type="text" variant="standard" name="FirstName" label="First Name" 
+                placeholder="type here...">
+            </lightning-input>
+            <lightning-input type="text" variant="standard" name="LastName" label="Last Name" 
+                placeholder="type here...">
+            </lightning-input>
+            <lightning-input type="email" variant="standard" name="Email" label="Email" placeholder="type here..."></lightning-input>
+        </div>
+        <div class="slds-p-around_large">
+            <lightning-button icon-name="utility:chevronleft" icon-position="left" variant="base" label="Previous" onclick={handlePrevious}>
+            </lightning-button>
+            &nbsp; &nbsp;
+            <lightning-button icon-name="utility:chevronright" icon-position="right" variant="brand" label="Next" title="Next" 
+                onclick={handleNext}>
+            </lightning-button>
+        </div>
+    </lightning-card>
+</template>

@@ -1,0 +1,24 @@
+<template>
+    <lightning-card  variant="Narrow" >
+        <div class="slds-var-m-around_large">
+            <c-progress-indicator-component current-step={currentStep} step-values={stepValues} >
+            </c-progress-indicator-component>
+        </div>
+        <div class="slds-var-m-around_large">
+            <c-new-account-component if:true={showAccount} onnext={handleNext} ></c-new-account-component>
+        </div>
+        <div class="slds-var-m-around_large">
+            <c-new-contact-component if:true={showContact} onnext={handleNext} onprevious={handlePrevious}></c-new-contact-component>
+        </div>
+        <div class="slds-var-m-around_large">
+            <c-new-opportunity-component if:true={showOpportunity} onnext={handleNext} onprevious={handlePrevious}></c-new-opportunity-component>
+        </div>
+        <div class="slds-var-m-around_large">
+            <c-new-product-component if:true={showProduct} onnext={handleNext} onprevious={handlePrevious}></c-new-product-component>
+        </div>
+
+        <div slot="footer">
+            <lightning-badge label="Quick Account"></lightning-badge>
+        </div>
+    </lightning-card>
+</template>

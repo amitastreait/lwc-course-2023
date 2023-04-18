@@ -1,0 +1,33 @@
+<template>
+    <!-- <div class="button-container">
+        <lightning-button icon-name="utility:check" label="Mark Complete" title="Mark Complete" onclick={handleComplete}></lightning-button>
+    </div> -->
+    <lightning-layout multiple-rows>
+        <lightning-layout-item size="12" padding="around-small" small-device-size="12" medium-device-size="6" large-device-size="6" >
+            <p><strong>Subject</strong></p>
+            <p>{record.Subject}</p>
+        </lightning-layout-item>
+        <lightning-layout-item size="12" padding="around-small" small-device-size="12" medium-device-size="6" large-device-size="6">
+            <p><strong>Status</strong></p>
+            <p>{record.Status}</p>
+        </lightning-layout-item>
+    </lightning-layout>
+    <lightning-layout multiple-rows>
+        <lightning-layout-item size="12" padding="around-small" small-device-size="12" medium-device-size="6" large-device-size="6" >
+            <p><strong>Priority</strong></p>
+            <p>{record.Priority}</p>
+        </lightning-layout-item>
+        <lightning-layout-item size="12" padding="around-small" small-device-size="12" medium-device-size="6" large-device-size="6">
+            <p><strong>Due Date</strong></p>
+            <p>{record.ActivityDate}</p>
+        </lightning-layout-item>
+    </lightning-layout>
+    <lightning-layout multiple-rows>
+        <lightning-layout-item size="12" padding="around-small" small-device-size="12" medium-device-size="12" large-device-size="12" >
+            <p><strong>Description</strong></p>
+            <p>
+                {record.Description}
+            </p>
+        </lightning-layout-item>
+    </lightning-layout>
+</template>

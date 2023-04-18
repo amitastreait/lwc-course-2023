@@ -1,0 +1,24 @@
+<template>
+    <!-- 
+    <c-search-component
+        obj-name="Account"
+        icon-name="standard:account"
+        label-name="Parent Account"
+        placeholder="Select parent"
+        fields="['Name']"
+        display-fields="Name,Industry,Phone"
+        parent-a-p-i-name="ParentId"
+        index="1" >
+    </c-search-component>
+    -->
+    <c-search-component
+        obj-name={typeAttributes.objectName}
+        icon-name={typeAttributes.iconName}
+        label-name={typeAttributes.label}
+        placeholder={typeAttributes.placeholder}
+        fields={typeAttributes.fields}
+        display-fields={typeAttributes.displayFields}
+        parent-a-p-i-name={typeAttributes.parentApiName}
+        index={typeAttributes.index} >
+    </c-search-component>
+</template>

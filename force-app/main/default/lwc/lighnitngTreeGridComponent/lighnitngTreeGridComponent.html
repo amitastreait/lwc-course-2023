@@ -1,0 +1,13 @@
+<template>
+    <lightning-card  variant="Narrow"  title="Account Grid" icon-name="standard:account">
+        <div class="slds-p-horizontal_small">
+            <lightning-tree-grid
+                columns={gridColumns}
+                data={treeGridData}
+                key-field="Id"
+                onrowaction={handleRowAction}>
+            </lightning-tree-grid>
+        </div>
+        <div slot="footer">Card Footer</div>
+    </lightning-card>
+</template>

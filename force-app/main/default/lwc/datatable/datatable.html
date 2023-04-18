@@ -1,0 +1,13 @@
+<template>
+    <lightning-card title="Account DataTable" icon-name="standard:account">
+        <c-extented-table
+            key-field="Id"
+            data={dataList}
+            show-row-number-column
+            hide-checkbox-column
+            columns={columnsList}
+            onselect={handleSelect}
+        >
+        </c-extented-table>
+    </lightning-card>
+</template>

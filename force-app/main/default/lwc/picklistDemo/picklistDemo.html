@@ -1,0 +1,16 @@
+<template>
+    <lightning-card>
+        <div class="slds-m-around_small">
+            <c-picklist required object-api-name="Account" field-api-name="Industry" label="Industry" placeholder="Select Industry" onchange={handleChange}></c-picklist>
+        </div>
+        <div class="slds-m-around_small">
+            <c-picklist object-api-name="Account" field-api-name="AccountSource" label="Account Source" placeholder="Select Account Source" onchange={handleChange}></c-picklist>
+        </div>
+        <div class="slds-m-around_small">
+            <c-picklist record-type-id="0129D000001c1dyQAA" object-api-name="Case" field-api-name="Reason" label="Reason" placeholder="Select Case Reason" onchange={handleChange}></c-picklist>
+        </div>
+        <div class="slds-m-around_small">
+            <c-picklist record-type-id="0129D000001c1dyQAA" object-api-name="Case" field-api-name="Status" label="Case Status" placeholder="Select Status" onchange={handleChange}></c-picklist>
+        </div>
+    </lightning-card>
+</template>

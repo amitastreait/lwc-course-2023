@@ -1,0 +1,66 @@
+<!-- sldsValidatorIgnore -->
+<!-- sldsValidatorIgnore -->
+<template>
+
+    <lightning-spinner alternative-text="Loading" size="small" if:true={isSpinner}></lightning-spinner>
+    <lightning-card  variant="Narrow"  title="Recent Records" icon-name="standard:record">
+        <div class="slds-var-m-around_large">
+            <lightning-layout multiple-rows>
+                <lightning-layout-item size="12" padding="around-small" small-device-size="3" medium-device-size="6" large-device-size="3" >
+                    <lightning-combobox
+                        name="progress"
+                        label="Select Object"
+                        value={objectApiName}
+                        placeholder="Select Object"
+                        options={items}
+                        onchange={handleChange} >
+                    </lightning-combobox>
+                </lightning-layout-item>
+                <lightning-layout-item size="12" padding="around-small" small-device-size="3" medium-device-size="6" large-device-size="3">
+                    <lightning-input type="number" name="NoOfRecords" 
+                        value={noOfRecords} label="No of Records to display"
+                        onchange={handleChange}>
+                    </lightning-input>
+                </lightning-layout-item>
+                <lightning-layout-item size="12" padding="around-small" small-device-size="3" medium-device-size="6" large-device-size="3">
+                    <div class="slds-var-p-top_medium">
+                        <lightning-button variant="brand" label="Search" title="Search" onclick={handleSearch}></lightning-button>
+                    </div>
+                </lightning-layout-item>
+            </lightning-layout>
+            <lightning-layout multiple-rows if:true={_filteredRecord}>
+                <lightning-layout-item size="12" padding="around-small" small-device-size="3" medium-device-size="6" large-device-size="3" >
+                    <lightning-input type="text" name="search" label="Search Here" onchange={handleTextChange}></lightning-input>
+                </lightning-layout-item>
+            </lightning-layout>
+            <lightning-layout multiple-rows if:true={_errors}>
+                <c-error-panel errors={_errors} type='inlineMessage'></c-error-panel>
+            </lightning-layout>
+            <lightning-layout multiple-rows if:false={returnedRecord}>
+                <div class="slds-var-m-around_large">
+                    <strong>No records to display</strong>
+                </div>
+            </lightning-layout>
+            <lightning-layout multiple-rows if:true={_filteredRecord}>
+                <!-- sldsValidatorIgnoreNextLine -->
+                <lightning-datatable
+                    key-field="id"
+                    data={_filteredRecord}
+                    show-row-number-column
+                    hide-checkbox-column
+                    columns={_columns}
+                    onrowaction={handleRowAction}
+                    default-sort-direction={defaultSortDirection}
+                    sorted-direction={sortDirection}
+                    sorted-by={sortedBy}
+                    onsort={onHandleSort}
+                    onsave={handleSave}
+                    draft-values={draftValues} >
+                </lightning-datatable>
+            </lightning-layout>
+        </div>
+        <div slot="footer">
+            <lightning-badge label="Recent Records"></lightning-badge>
+        </div>
+    </lightning-card>
+</template>

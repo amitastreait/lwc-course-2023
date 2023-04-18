@@ -1,0 +1,27 @@
+<template>
+    <lightning-card  variant="Narrow" title="Accordion" icon-name="custom:custom34">
+        <div class="slds-p-horizontal_small">
+            <lightning-accordion >
+                <template if:true={contactList} for:each={contactList} for:item="con" >
+                    <lightning-accordion-section key={con.Id} name={con.Name} label={con.Name}>
+                        
+                        <lightning-button-menu slot="actions" key={con.Id} alternative-text="Show menu">
+                            <lightning-menu-item value="MenuItemOne" label="Menu Item One"></lightning-menu-item>
+                            <lightning-menu-item value="MenuItemTwo" label="Menu Item Two"></lightning-menu-item>
+                            <lightning-menu-item value="MenuItemThree" label="Menu Item Three"></lightning-menu-item>
+                        </lightning-button-menu>
+
+                        <p><b>Street</b>    : {con.MailingStreet}</p>
+                        <p><b>City</b>      : {con.MailingCity}</p>
+                        <p><b>State</b>     : {con.MailingState}</p>
+                        <p><b>Postcode</b>  : {con.MailingPostalcode}</p>
+                        <p><b>Country</b>   : {con.MailingCountry}</p>
+                        <p><b>Email</b>     : {con.Email}</p>
+                        <p><b>Phone</b>     : {con.Phone}</p>
+                    </lightning-accordion-section>
+                </template>
+            </lightning-accordion>
+        </div>
+        <div slot="footer">Card Footer</div>
+    </lightning-card>
+</template>

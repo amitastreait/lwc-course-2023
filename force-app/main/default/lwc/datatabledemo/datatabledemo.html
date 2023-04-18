@@ -1,0 +1,18 @@
+<template>
+    <lightning-card title="Extended DataTable" icon-name="standard:account">
+        <lightning-datatable
+            key-field="Id"
+            data={records}
+            columns={columnList}>
+        </lightning-datatable>
+        <br/>
+        <br/>
+        <c-ltngdatatable
+            key-field="Id"
+            data={records}
+            onselect={handleSelect}
+            onlinkclick={handleLinkClick}
+            columns={columnList}>
+        </c-ltngdatatable>
+    </lightning-card>
+</template>

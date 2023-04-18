@@ -1,0 +1,28 @@
+.parent-container{
+    border-radius: 12px;
+    background: lightgrey;
+    margin: 8px;
+    position: relative;
+    border: none;
+    text-align: center;
+}
+.image-container{
+    justify-content: center;
+    display: flex;
+    padding: 5px;
+    border-radius: 50%;
+    text-align: center;
+}
+.text-container{
+    text-align: center;
+}
+.butoon-container{
+    text-align: center;
+    margin-bottom: 2px;
+    margin-top: 2px;
+}
+.image-class{
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+}

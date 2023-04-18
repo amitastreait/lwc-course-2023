@@ -1,0 +1,65 @@
+<template>
+    <template if:false={selectedRecord}>
+        <div class="slds-p-around_x-small">
+            <c-search 
+                onchange={handleOnchange}>
+            </c-search>
+        </div>
+    </template>
+    <div >
+        <template if:true={error}>
+            <template if:true={error.details}>
+                <template if:true={error.details.body}>
+                    {error.details.body.message}
+                </template>
+            </template>
+        </template>
+    </div>
+    <div>
+        <template if:false={selectedRecord}>
+            <template if:true={records}>
+                <template for:each={records} for:item="record">
+                    <c-record-list key={record.Id} record={record} 
+                        onselect={handleSelect} iconname={iconname}
+                        fieldname={searchfield}>
+                    </c-record-list>
+                </template>
+            </template>
+        </template>
+        <template if:false={selectedRecord}>
+        </template>
+    </div>
+    <div class="slds-p-around_x-small">
+        <template if:true={selectedRecord}>
+
+            <div class="slds-form-element">
+                <label if:true={showLabel} class="slds-form-element__label" for="combobox-id-5" id="combobox-label-id-32">{objectName}</label>
+                <div class="slds-form-element__control">
+                    <div class="slds-combobox_container slds-has-selection">
+                        <div class="slds-combobox slds-dropdown-trigger slds-dropdown-trigger_click">
+                            <div class="slds-combobox__form-element slds-input-has-icon slds-input-has-icon_left-right" role="none">
+                                <span class="slds-icon_container slds-icon-standard-account slds-combobox__input-entity-icon" title={objectName}>
+                                    <svg class="slds-icon slds-icon_small" aria-hidden="true">
+                                        <use xlink:href={iconUrl}></use>
+                                    </svg>
+                                </span>
+                                <button type="button" class="slds-input_faux slds-combobox__input slds-combobox__input-value" aria-labelledby="combobox-label-id-32 combobox-id-5-selected-value" id="combobox-id-5-selected-value" aria-controls="listbox-id-5" aria-expanded="false"
+                                    aria-haspopup="listbox">
+                                    <span class="slds-truncate" id="combobox-value-id-19">
+                                        {selectedRecord.Name}
+                                    </span>
+                                </button>
+                                <button onclick={handleRemove} class="slds-button slds-button_icon slds-input__icon slds-input__icon_right" title="Remove selected option">
+                                    <svg class="slds-button__icon" aria-hidden="true">
+                                        <use xlink:href="/apexpages/slds/latest/assets/icons/utility-sprite/svg/symbols.svg#close"></use>
+                                    </svg>
+                                    <span class="slds-assistive-text">Remove selected option</span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </template>
+    </div>
+</template>

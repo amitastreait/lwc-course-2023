@@ -1,0 +1,23 @@
+<template>
+    <lightning-card  variant="Narrow" >
+        <div class="slds-p-around_large">
+            <lightning-input type="text" variant="standard" name="Name" 
+                label="Account Name" 
+                placeholder="type here...">
+            </lightning-input>
+            <lightning-input type="text" variant="standard" name="Phone" 
+                label="Account Phone" 
+                placeholder="type here...">
+            </lightning-input>
+            <lightning-input type="text" variant="standard" name="Fax" 
+                label="Account Fax" 
+                placeholder="type here...">
+            </lightning-input>
+        </div>
+        <div class="slds-p-around_large">
+            <lightning-button variant="brand" label="Next" title="Next" 
+                onclick={handleNext}>
+            </lightning-button>
+        </div>
+    </lightning-card>
+</template>

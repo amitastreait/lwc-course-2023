@@ -1,0 +1,29 @@
+<template>
+    <lightning-spinner alternative-text="Loading" size="small" variant="brand" if:true={showSpinner}></lightning-spinner>
+    <lightning-card title="Search User" icon-name="standard:user">
+        <div class="slds-m-around_small">
+            <lightning-input type="search" label="Search User" onchange={handleUseChange}>
+            </lightning-input>
+        </div>
+        <div class="slds-m-around_small">
+            <template for:each={records} if:true={records} for:item="user" for:index="index">
+                <div key={user.Id} class="parent-container">
+                    <div class="image-container">
+                        <img class="image-class" src={user.FullPhotoUrl} alt="User Profile">
+                    </div>
+                    <div class="text-container">
+                        <p> {user.Name} </p>
+                        <p> {user.Title} </p>
+                        <p> {user.Username} </p>
+                        <p> {user.Email} </p>
+                        <br/>
+                        <lightning-button data-user-id={user.Id} class="button-container" variant="brand" label="Open" title="Open" onclick={handleUserDetail}></lightning-button>
+                        <br/>
+                        <br/>
+                    </div>
+                </div>
+            </template>
+            
+        </div>
+    </lightning-card>
+</template>

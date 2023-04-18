@@ -1,0 +1,15 @@
+<template>
+    <lightning-card  variant="Narrow"  title="Disconnected Callback" icon-name="custom:custom23">
+        <div class="slds-p-horizontal_small">
+            <template if:true={showHide}>
+                <c-getter-setter-demo ></c-getter-setter-demo>
+            </template>
+            <lightning-button variant="brand" label="Show-hide Get Set" title="Shide Get Set" 
+                onclick={handleClick}>
+            </lightning-button>
+        </div>
+        <div slot="footer">
+            <lightning-badge label="disconnected callback"></lightning-badge>
+        </div>
+    </lightning-card>
+</template>

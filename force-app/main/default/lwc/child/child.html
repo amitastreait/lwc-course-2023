@@ -1,0 +1,8 @@
+<template>
+    <div>
+        I am within child component
+    </div>
+    <slot></slot>
+    <slot name="first" onslotchange={handleSlotChage} ></slot>
+    <slot name="second" onslotchange={handleSecondSlotChage}></slot>
+</template>

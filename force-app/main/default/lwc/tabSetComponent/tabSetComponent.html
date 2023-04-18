@@ -1,0 +1,20 @@
+<template>
+    <lightning-card  variant="Narrow"  title="Tabset" icon-name="standard:account">
+        <div class="slds-p-horizontal_small">
+            <lightning-tabset variant="vertical">
+                <template if:true={contactList} for:each={contactList} for:item="con" >
+                    <lightning-tab key={con.Id} label={con.Name} value={con.Name} >
+                        <p><b>Street</b>    : {con.MailingStreet}</p>
+                        <p><b>City</b>      : {con.MailingCity}</p>
+                        <p><b>State</b>     : {con.MailingState}</p>
+                        <p><b>Postcode</b>  : {con.MailingPostalcode}</p>
+                        <p><b>Country</b>   : {con.MailingCountry}</p>
+                        <p><b>Email</b>     : {con.Email}</p>
+                        <p><b>Phone</b>     : {con.Phone}</p>
+                    </lightning-tab>
+                </template>
+            </lightning-tabset>
+        </div>
+        <div slot="footer">Card Footer</div>
+    </lightning-card>
+</template>

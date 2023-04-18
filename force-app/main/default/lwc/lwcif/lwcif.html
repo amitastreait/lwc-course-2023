@@ -1,0 +1,44 @@
+<template>
+    <lightning-card>
+        <!--
+            Cat Image Link - https://static.wikia.nocookie.net/mugen/images/3/39/Tom_be2af94.png
+            Rat Image Link - https://www.freepnglogos.com/uploads/tom-and-jerry-png/tom-and-jerry-png-image-purepng-transparent-3.png
+            Dog Image Link - https://static.wikia.nocookie.net/ultimatepopculture/images/0/0f/Quiz-tom-jerry-richtig-03-1035-10110.png
+        -->
+        <!-- 
+            <template if:true={showCat}>
+                <img src="https://static.wikia.nocookie.net/mugen/images/3/39/Tom_be2af94.png" alt="Cat Image">
+            </template>
+            <template if:true={showRat}>
+                <img width="200" height="200" src="https://www.freepnglogos.com/uploads/tom-and-jerry-png/tom-and-jerry-png-image-purepng-transparent-3.png" alt="Rat Image">
+            </template>
+        --> 
+
+        <template lwc:if={showCat}>
+            <img src="https://static.wikia.nocookie.net/mugen/images/3/39/Tom_be2af94.png" alt="Cat Image">
+        </template>
+        <template lwc:if={showRat}>
+            <img width="200" height="200" src="https://www.freepnglogos.com/uploads/tom-and-jerry-png/tom-and-jerry-png-image-purepng-transparent-3.png" alt="Rat Image">
+        </template>
+
+        <!--
+            <template lwc:if={showCat}>
+                <img src="https://static.wikia.nocookie.net/mugen/images/3/39/Tom_be2af94.png" alt="Cat Image">
+            </template>
+            <template lwc:elseif={showRat}>
+                <img width="200" height="200" src="https://www.freepnglogos.com/uploads/tom-and-jerry-png/tom-and-jerry-png-image-purepng-transparent-3.png" alt="Rat Image">
+            </template>
+            <template lwc:else>
+                <img width="200" height="200" src="https://static.wikia.nocookie.net/ultimatepopculture/images/0/0f/Quiz-tom-jerry-richtig-03-1035-10110.png" alt="Dog Image">
+            </template>
+        -->
+        <br>
+        <div class="slds-m-around_small">
+            <lightning-button variant="brand" label="Show Rat" title="Show Rat" onclick={handleRatClick}></lightning-button>
+            &nbsp;&nbsp;
+            <lightning-button variant="brand" label="Show Cat" title="Show Cat" onclick={handleCatClick}></lightning-button>
+            &nbsp;&nbsp;
+            <lightning-button variant="brand" label="Show Dog" title="Show Dog" onclick={handleDogClick}></lightning-button>
+        </div>
+    </lightning-card>
+</template>

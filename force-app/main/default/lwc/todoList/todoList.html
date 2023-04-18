@@ -1,0 +1,50 @@
+<template>
+    <lightning-card title="My Todo List" icon-name="standard:task">
+        <lightning-button slot="actions" title="Manage ToDo" label="Manage ToDo" onclick={handleClick} variant="brand"></lightning-button>
+        <div class="slds-m-around_large">
+            <div class="slds-grid slds-wrap">
+                <template for:each={todoList} for:item="toDo" for:index="index" lwc:if={todoList}>
+                        <div key={toDo.Id} class="slds-col slds-size_1-of-3">
+                            <div class="todo-container">
+                                <div class={toDo.headingClass}> 
+                                    {toDo.Subject}
+                                </div>
+                                <div class="text-container">
+                                    <p>Description : {toDo.Description} </p>
+                                    <p>Due Date: {toDo.ActivityDate} </p>
+                                </div>
+                                <div class="bottom-container">
+                                    <lightning-icon size="xx-small" icon-name="action:preview" alternative-text="Preview" title="Preview"></lightning-icon>
+                                    &nbsp;
+                                    <lightning-icon size="xx-small" icon-name="action:edit" alternative-text="Preview" title="Preview"></lightning-icon>
+                                </div>
+                            </div>
+                        </div>
+                </template>
+            </div>
+        </div>
+    </lightning-card>
+
+    <div lwc:if={showModal}>
+        <section role="dialog" tabindex="-1" aria-modal="true" aria-labelledby="modal-heading-01" class="slds-modal slds-fade-in-open">
+            <div class="slds-modal__container">
+                <button class="slds-button slds-button_icon slds-modal__close slds-button_icon-inverse">
+                    <svg class="slds-button__icon slds-button__icon_large" aria-hidden="true">
+                        <use xlink:href="/assets/icons/utility-sprite/svg/symbols.svg#close"></use>
+                    </svg>
+                    <span class="slds-assistive-text">Cancel and close</span>
+                </button>
+                <div class="slds-modal__header">
+                    <h1 id="modal-heading-01" class="slds-modal__title slds-hyphenate">Create a TODO Record</h1>
+                </div>
+                <div class="slds-modal__content slds-p-around_medium" id="modal-content-id-1">
+                    <c-create-task-component onsuccess={handleSuccess}></c-create-task-component>
+                </div>
+                <div class="slds-modal__footer">
+                    <button class="slds-button slds-button_neutral" onclick={handleCancel} aria-label="Cancel and close">Cancel</button>
+                </div>
+            </div>
+        </section>
+        <div class="slds-backdrop slds-backdrop_open" role="presentation"></div>
+    </div>
+</template>
