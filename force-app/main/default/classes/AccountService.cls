@@ -8,4 +8,5 @@ public with sharing class AccountService {
             throw new AuraHandledException(e.getMessage());
         }
     }
+    
 }
