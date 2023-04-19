@@ -3,34 +3,8 @@
     <flexiPageRegions>
         <itemInstances>
             <componentInstance>
-                <componentInstanceProperties>
-                    <name>objApiName</name>
-                    <value>Case</value>
-                </componentInstanceProperties>
-                <componentInstanceProperties>
-                    <name>placeToBeUsed</name>
-                    <value>Case Record Page</value>
-                </componentInstanceProperties>
-                <componentName>quickCreateComponent</componentName>
-                <identifier>c_quickCreateComponent</identifier>
-            </componentInstance>
-        </itemInstances>
-        <itemInstances>
-            <componentInstance>
-                <componentName>usersearchcomponent</componentName>
-                <identifier>c_usersearchcomponent</identifier>
-            </componentInstance>
-        </itemInstances>
-        <itemInstances>
-            <componentInstance>
-                <componentName>flowcomponent</componentName>
-                <identifier>c_flowcomponent</identifier>
-            </componentInstance>
-        </itemInstances>
-        <itemInstances>
-            <componentInstance>
-                <componentName>home:heroChart</componentName>
-                <identifier>home_heroChart</identifier>
+                <componentName>searchProductContainer</componentName>
+                <identifier>c_searchProductContainer</identifier>
             </componentInstance>
         </itemInstances>
         <mode>Replace</mode>
@@ -72,6 +46,12 @@
         <type>Region</type>
     </flexiPageRegions>
     <flexiPageRegions>
+        <itemInstances>
+            <componentInstance>
+                <componentName>lookupDemo</componentName>
+                <identifier>c_lookupDemo</identifier>
+            </componentInstance>
+        </itemInstances>
         <itemInstances>
             <componentInstance>
                 <componentName>home:assistant</componentName>

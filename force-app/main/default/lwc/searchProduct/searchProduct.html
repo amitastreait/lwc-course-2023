@@ -1,18 +1,21 @@
 <template>
-    <lightning-modal-header label="My Modal"></lightning-modal-header>
+    <lightning-modal-header label="Search Product"></lightning-modal-header>
     <lightning-modal-body>
-        <lightning-record-form
-            record-id="0011y00000dMFyqAAG"
-            layout-type="Compact"
-            object-api-name="Account"
-            columns="2"
-            mode="edit"
-        >
-        </lightning-record-form>
+        <lightning-spinner if:true={isSpinner} variant="brand" alternative-text="Loading....."></lightning-spinner>
+        <div class="slds-m-around_small">
+            <lightning-input type="search" label="Search Product" placeholder="enter the product name or product code" onchange={handleChange}></lightning-input>
+        </div>
+        <div class="slds-m-around_small">
+            <c-ltngdatatable if:true={records}
+                key-field="Id"
+                data={records}
+                onlinkclick={handleLinkClick}
+                hide-checkbox-column
+                columns={columnList}>
+            </c-ltngdatatable>
+        </div>
     </lightning-modal-body>
     <lightning-modal-footer>
         <lightning-button label="cancel" title="cancel" onclick={handleCancel}></lightning-button>
-        &nbsp;&nbsp;&nbsp;
-        <lightning-button variant="brand" label="Save" title="Save" onclick={handleClick}></lightning-button>
     </lightning-modal-footer>
 </template>
