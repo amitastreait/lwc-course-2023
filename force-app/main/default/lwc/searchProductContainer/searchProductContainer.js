@@ -7,6 +7,8 @@ export default class SearchProductContainer extends LightningElement {
             size: 'large',
             desciption: 'Search Product Modal',
             label: "Seach Product",
+            priceBook2Id: '01s1y000002ONZTAA4',
+            index: '0',
             content: 'Simple Content from Parent'
         });
         console.log('Result ', result);
