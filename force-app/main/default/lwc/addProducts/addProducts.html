@@ -65,7 +65,20 @@
                 <template for:each={records} for:item="record" for:index="index" if:true={records}>
                     <tr key={record.Id} class="slds-hint-parent">
                         <th scope="row">
-                            <c-search-component
+                            <div if:false={record.SELECTED_Product_Name}>
+                                <lightning-input if:false={record.Id} value={lookupValue} type="search" data-index={index} onchange={handleLookupChange} ></lightning-input>
+                                <p if:true={record.lookupValue} class="search-container">
+                                    <span onclick={handleModalClick} data-index={index} data-value={record.lookupValue} if:false={record.Id}>
+                                        <lightning-icon icon-name="utility:search" size="xx-small"></lightning-icon> Show All Results for {record.lookupValue}
+                                    </span>
+                                </p>
+                            </div>
+                            <p if:true={record.SELECTED_Product_Name}>
+                                <lightning-pill label={record.SELECTED_Product_Name} data-index={index} onremove={handleRemoveOnly}>
+                                    <lightning-icon icon-name="standard:product" alternative-text="Product"></lightning-icon>
+                                </lightning-pill>
+                            </p>
+                            <!-- <c-search-component
                                 if:false={record.Id}
                                 obj-name="Product2"
                                 icon-name="standard:product"
@@ -76,7 +89,7 @@
                                 parent-a-p-i-name="Product2Id"
                                 index={index}
                                 onlookup={handleLookup} >
-                            </c-search-component>
+                            </c-search-component> -->
                             <div if:true={record.Id}>
                                 <a href="JavaScript:void(0);" data-record-id={record.Id} onclick={handleDetailPage}>
                                     {record.Product2.Name}

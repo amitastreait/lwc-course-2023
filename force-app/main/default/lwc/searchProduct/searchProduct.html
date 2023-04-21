@@ -3,7 +3,7 @@
     <lightning-modal-body>
         <lightning-spinner if:true={isSpinner} variant="brand" alternative-text="Loading....."></lightning-spinner>
         <div class="slds-m-around_small">
-            <lightning-input type="search" label="Search Product" placeholder="enter the product name or product code" onchange={handleChange}></lightning-input>
+            <lightning-input type="search" value={content} label="Search Product" placeholder="enter the product name or product code" onchange={handleChange}></lightning-input>
         </div>
         <div class="slds-m-around_small">
             <c-ltngdatatable if:true={records}

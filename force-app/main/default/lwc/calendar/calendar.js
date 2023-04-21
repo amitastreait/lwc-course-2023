@@ -1,9 +1,8 @@
 import { LightningElement } from 'lwc';
-import fullcalendar from '@salesforce/resourceUrl/fullcalendar';
-import { loadScript } from "lightning/platformResourceLoader";
+
 export default class Calendar extends LightningElement {
 
-    connectedCallback() {
+    /*connectedCallback() {
         loadScript(this, fullcalendar)
             .then(() => {
                 console.log('FullCalendar JS loaded...');
@@ -14,5 +13,5 @@ export default class Calendar extends LightningElement {
             .finally(() => {
                 console.log('Finally Executed...');
             })
-    }
+    }*/
 }

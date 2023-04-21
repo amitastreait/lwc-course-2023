@@ -10,6 +10,8 @@ import { deleteRecord } from 'lightning/uiRecordApi';
 import { ShowToastEvent } from 'lightning/platformShowToastEvent';
 import listLineItem from '@salesforce/apex/AddProductsService.listLineItems';
 
+import searchProductModal from 'c/searchProduct';
+
 export default class AddProducts extends LightningElement {
 
     @api recordId;
@@ -32,6 +34,9 @@ export default class AddProducts extends LightningElement {
         'Order': 'OrderId',
         'Quote': 'QuoteId'
     }
+
+    lookupValue;
+    index;
 
     connectedCallback() {
         this.isLoading = true;
@@ -58,7 +63,7 @@ export default class AddProducts extends LightningElement {
                 WHERE QuoteId = '${this.recordId}'
             `;
         }
-        console.log(this.query);
+        //console.log(this.query);
     }
 
     @wire(getPriceBook, {
@@ -66,9 +71,9 @@ export default class AddProducts extends LightningElement {
     })
     wiredPriceBook({ error, data }) {
         if (data) {
-            console.log('Pricebook Record ', data);
+            //console.log('Pricebook Record ', data);
             if (data.length && data.length > 0) {
-                console.log('Pricebook ', data[0]);
+                //console.log('Pricebook ', data[0]);
                 this.priceBook2Id = data[0].Pricebook2Id;
                 console.log(this.priceBook2Id);
                 if (this.priceBook2Id) {
@@ -86,7 +91,7 @@ export default class AddProducts extends LightningElement {
         }
     }
 
-    @wire(getPriceBookEntries, {
+    /* @wire(getPriceBookEntries, {
         priceBook2Id: '$priceBook2Id'
     })
     wiredEntries({ error, data }) {
@@ -98,14 +103,14 @@ export default class AddProducts extends LightningElement {
         if (error) {
 
         }
-    }
+    }*/
 
     @wire(listLineItems, {
         query: '$query'
     })
     wiredLineItems({ error, data }) {
         if (data) {
-            console.log(data);
+            //console.log(data);
             this.records = JSON.parse(JSON.stringify(data));
         }
         if (error) {
@@ -118,7 +123,7 @@ export default class AddProducts extends LightningElement {
     handleLookup(event) {
         let detail = event.detail;
         this.records[detail.data.index][detail.data.parentAPIName] = detail.data.recordId;
-        console.log(JSON.stringify(this.records));
+        //console.log(JSON.stringify(this.records));
     }
 
     addRow() {
@@ -167,7 +172,7 @@ export default class AddProducts extends LightningElement {
         let name = event.currentTarget.name;
         let value = event.currentTarget.value;
         this.records[index][name] = value;
-        console.log(this.records);
+        //console.log(this.records);
     }
 
     handleCancel() {
@@ -188,16 +193,16 @@ export default class AddProducts extends LightningElement {
         event.preventDefault();
         // Call the apex method to save the record
         // upsert (Update + Insert) based on recordId(Id)
-
+        this.errorMessage = '';
         let allValid = this.validateInput();
         if (!allValid) {
             return;
         }
 
         // Lookup Validation
-        console.log(JSON.stringify(this.records));
+
         this.records.forEach(line => {
-            if (!line.Product2Id && !line.Id) {
+            if (!line.PricebookEntryId && !line.Id) {
                 allValid = false;
                 this.errorMessage = 'Please select the product for all the line items!';
             }
@@ -210,7 +215,6 @@ export default class AddProducts extends LightningElement {
 
         this.records.forEach(line => {
             if (!line.Id) {
-                line.PricebookEntryId = this.priceBookEntryMap[line.Product2Id];
                 let parentApiName = this.objectApiNameMap[this.objectApiName];
                 line[parentApiName] = this.recordId;
                 line.Product2Id = undefined;
@@ -229,6 +233,7 @@ export default class AddProducts extends LightningElement {
                     variant: 'success'
                 });
                 this.dispatchEvent(successEvent);
+
 
                 listLineItem({
                     query: this.query
@@ -269,5 +274,45 @@ export default class AddProducts extends LightningElement {
         }, true);
 
         return allValid;
+    }
+
+    async handleModalClick(event) {
+
+        let index = event.currentTarget.dataset.index;
+        let value = event.currentTarget.dataset.value;
+
+        const result = await searchProductModal.open({
+            size: 'large',
+            desciption: 'Search Product Modal',
+            label: "Seach Product",
+            priceBook2Id: this.priceBook2Id,
+            index: index,
+            content: value
+        });
+
+        console.log('selected product ', result);
+
+        if (result && result !== 'cancel') {
+            let selectedDetails = JSON.parse(result);
+            // { "value": "Widget 300", "recordId": "01u1y0000049gFNAAY", "recordName": "Widget 300", "index": "1" }
+            this.records[selectedDetails.index]['PricebookEntryId'] = selectedDetails.recordId;
+            this.records[selectedDetails.index]['SELECTED_Product_Name'] = selectedDetails.recordName;
+        }
+    }
+
+    handleRemoveOnly(event) {
+        let index = event.currentTarget.dataset.index;
+        this.records[index]['Product2Id'] = undefined;
+        this.records[index]['SELECTED_Product_Name'] = undefined;
+    }
+
+    handleLookupChange(event) {
+        event.preventDefault();
+        let index = event.currentTarget.dataset.index;
+        let value = event.currentTarget.value;
+        this.records[index]['lookupValue'] = value;
+        /*
+            [ { lookupValue: 'ac' }, { lookupValue: '' } ]
+        */
     }
 }

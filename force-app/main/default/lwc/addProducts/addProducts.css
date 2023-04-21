@@ -1,3 +1,13 @@
 .delete-icon{
     cursor: pointer;
 }
+
+.search-container{
+    cursor: pointer;
+    padding: 4px;
+    background: aliceblue;
+    border-radius: 5px;
+}
+.search-container:hover{
+    background-color: rgba(211, 211, 211, 0.326);
+}

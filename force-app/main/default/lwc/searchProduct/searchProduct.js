@@ -39,6 +39,12 @@ export default class SearchProduct extends LightningModal {
         this.close('okay');
     }
 
+    connectedCallback() {
+        if (this.content) {
+            this.handleClick(this.content);
+        }
+    }
+
     handleChange(event) {
         event.preventDefault();
         let searchKeyword = event.target.value;
@@ -53,6 +59,14 @@ export default class SearchProduct extends LightningModal {
         })
             .then((result) => {
                 this.records = result;
+                this.records = result.map(itme => {
+                    return {
+                        ...item,
+                        Family: item.Product2.Family,
+                        ProductCode: item.Product2.ProductCode,
+                        Description: item.Product2.Description,
+                    }
+                });
             })
             .catch((error) => {
                 this.errors = error;
@@ -67,6 +81,6 @@ export default class SearchProduct extends LightningModal {
         let details = event.detail;
         let clonedDetails = JSON.parse(JSON.stringify(details));
         clonedDetails.index = this.index;
-        this.close(JSON.stringify(clonedDetails)); // index, recordId, recordName, value
+        this.close(JSON.stringify(clonedDetails));
     }
 }
