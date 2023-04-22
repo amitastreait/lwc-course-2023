@@ -1,0 +1,54 @@
+<template>
+    <lightning-layout class="header-container" multiple-rows>
+        <lightning-layout-item size="12" padding="around-small" small-device-size="12" medium-device-size="6" large-device-size="3" >
+            <div class="slds-form-element">
+                <label class="slds-form-element__label" for="form-element-01">
+                    <strong>Order</strong>
+                </label>
+                <div class="slds-form-element__control">
+                    <a href={orderUrl} target="_blank">{number}</a>
+                </div>
+            </div>
+        </lightning-layout-item>
+        <lightning-layout-item size="12" padding="around-small" small-device-size="12" medium-device-size="6" large-device-size="3" >
+            <div class="slds-form-element">
+                <label class="slds-form-element__label" for="form-element-01">
+                    <strong>Account</strong>
+                </label>
+                <div class="slds-form-element__control">
+                    <a href={accountId} target="_blank">{account}</a>
+                </div>
+            </div>
+        </lightning-layout-item>
+        <lightning-layout-item size="12" padding="around-small" small-device-size="12" medium-device-size="6" large-device-size="2">
+            <div class="slds-form-element">
+                <label class="slds-form-element__label" for="form-element-01">
+                    <strong>Status</strong>
+                </label>
+                <div class="slds-form-element__control">
+                    {status}
+                </div>
+            </div>
+        </lightning-layout-item>
+        <lightning-layout-item size="12" padding="around-small" small-device-size="12" medium-device-size="6" large-device-size="2">
+            <div class="slds-form-element">
+                <label class="slds-form-element__label" for="form-element-01">
+                    <strong>Order Amount</strong>
+                </label>
+                <div class="slds-form-element__control">
+                    {amount}
+                </div>
+            </div>
+        </lightning-layout-item>
+        <lightning-layout-item size="12" padding="around-small" small-device-size="12" medium-device-size="6" large-device-size="2">
+            <div class="slds-form-element">
+                <label class="slds-form-element__label" for="form-element-01">
+                    <strong>Order Date</strong>
+                </label>
+                <div class="slds-form-element__control">
+                    <lightning-formatted-date-time value={orderDate}></lightning-formatted-date-time>
+                </div>
+            </div>
+        </lightning-layout-item>
+    </lightning-layout>
+</template>

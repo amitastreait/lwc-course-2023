@@ -39,6 +39,16 @@
         &nbsp;&nbsp;
         <lightning-button if:true={priceBook2Id} variant="brand" label="Submit Products" title="Submit Products" slot="actions" onclick={submitRecords}></lightning-button>
         
+        <template lwc:if={showOpportunityHeader}>
+            <c-opportunityheader record-id={recordId}></c-opportunityheader>
+        </template>
+        <template lwc:if={showOrderHeader}>
+            <c-orderheader record-id={recordId}></c-orderheader>
+        </template>
+        <template lwc:if={showQuoteHeader}>
+            Quote Details Here
+        </template>
+
         <table if:true={priceBook2Id} class="slds-table slds-table_cell-buffer slds-no-row-hover slds-table_bordered">
             <thead>
                 <tr class="slds-line-height_reset">

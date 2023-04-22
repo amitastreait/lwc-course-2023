@@ -28,6 +28,10 @@ export default class AddProducts extends LightningElement {
     priceBook2Id;
     errorMessage;
 
+    showOpportunityHeader = false;
+    showOrderHeader = false;
+    showQuoteHeader = false;
+
     priceBookEntryMap = {};
     objectApiNameMap = {
         'Opportunity': 'OpportunityId',
@@ -48,13 +52,15 @@ export default class AddProducts extends LightningElement {
                 FROM OpportunityLineItem
                 WHERE OpportunityId = '${this.recordId}'
             `;
+            this.showOpportunityHeader = true;
         } else if (this.objectApiName === 'Order') {
-            this.query = `SSELECT Id, Product2Id, OrderId, PricebookEntryId, 
+            this.query = `SELECT Id, Product2Id, OrderId, PricebookEntryId, 
                 Quantity, UnitPrice, ListPrice, 
                 Product2.Name,
                 TotalPrice, ServiceDate, Description FROM OrderItem
                 WHERE OrderId = '${this.recordId}'
             `;
+            this.showOrderHeader = true;
         } else if (this.objectApiName === 'Quote') {
             this.query = `SELECT Id, LineNumber, QuoteId, 
                 PricebookEntryId, Quantity, UnitPrice, 
@@ -62,6 +68,7 @@ export default class AddProducts extends LightningElement {
                 Description, ServiceDate, Product2Id, ListPrice, TotalPrice FROM QuoteLineItem
                 WHERE QuoteId = '${this.recordId}'
             `;
+            this.showQuoteHeader = true;
         }
         //console.log(this.query);
     }

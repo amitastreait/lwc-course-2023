@@ -1,0 +1,55 @@
+<template>
+    <lightning-layout class="header-container" multiple-rows>
+        <lightning-layout-item size="12" padding="around-small" small-device-size="12" medium-device-size="6" large-device-size="3" >
+            <div class="slds-form-element">
+                <label class="slds-form-element__label" for="form-element-01">
+                    <strong>Opportunity</strong>
+                </label>
+                <div class="slds-form-element__control">
+                    <a href={opportunityUrl} target="_blank">{name}</a>
+                </div>
+            </div>
+        </lightning-layout-item>
+        <lightning-layout-item size="12" padding="around-small" small-device-size="12" medium-device-size="6" large-device-size="3" >
+            <div class="slds-form-element">
+                <label class="slds-form-element__label" for="form-element-01">
+                    <strong>Account</strong>
+                </label>
+                <div class="slds-form-element__control">
+                    <a href={accountId} target="_blank">{account}</a>
+                </div>
+            </div>
+        </lightning-layout-item>
+        <lightning-layout-item size="12" padding="around-small" small-device-size="12" medium-device-size="6" large-device-size="2">
+            <div class="slds-form-element">
+                <label class="slds-form-element__label" for="form-element-01">
+                    <strong>Stage Name</strong>
+                </label>
+                <div class="slds-form-element__control">
+                    {stage}
+                </div>
+            </div>
+        </lightning-layout-item>
+        <lightning-layout-item size="12" padding="around-small" small-device-size="12" medium-device-size="6" large-device-size="2">
+            <div class="slds-form-element">
+                <label class="slds-form-element__label" for="form-element-01">
+                    <strong>Amount</strong>
+                </label>
+                <div class="slds-form-element__control">
+                    <!-- <lightning-formatted-number value={amount} format-style="currency" currency-code="USD"></lightning-formatted-number> -->
+                    {amount}
+                </div>
+            </div>
+        </lightning-layout-item>
+        <lightning-layout-item size="12" padding="around-small" small-device-size="12" medium-device-size="6" large-device-size="2">
+            <div class="slds-form-element">
+                <label class="slds-form-element__label" for="form-element-01">
+                    <strong>Closed Date</strong>
+                </label>
+                <div class="slds-form-element__control">
+                    <lightning-formatted-date-time value={closedDate}></lightning-formatted-date-time>
+                </div>
+            </div>
+        </lightning-layout-item>
+    </lightning-layout>
+</template>
