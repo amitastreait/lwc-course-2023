@@ -7,6 +7,12 @@
                 <identifier>c_searchProductContainer</identifier>
             </componentInstance>
         </itemInstances>
+        <itemInstances>
+            <componentInstance>
+                <componentName>empapi</componentName>
+                <identifier>c_empapi</identifier>
+            </componentInstance>
+        </itemInstances>
         <mode>Replace</mode>
         <name>top</name>
         <type>Region</type>

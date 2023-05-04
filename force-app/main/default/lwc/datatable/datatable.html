@@ -5,6 +5,9 @@
             data={dataList}
             show-row-number-column
             hide-checkbox-column
+            oncellchange={handleCellChange}
+            draft-values={draftValues}
+            onsave={handleSave}
             columns={columnsList}
             onselect={handleSelect}
         >

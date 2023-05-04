@@ -2,8 +2,10 @@
   "orgName": "PantherSchool Company",
   "edition": "Enterprise",
   "hasSampleData": true,
-  "username": "amit.singh@lwc-course-2023.org1",
-  "features": ["EnableSetPasswordInApi"],
+  "username": "amit.singh@lwc-course-2023.org2",
+  "features": [
+    "EnableSetPasswordInApi"
+  ],
   "settings": {
     "lightningExperienceSettings": {
       "enableS1DesktopEnabled": true

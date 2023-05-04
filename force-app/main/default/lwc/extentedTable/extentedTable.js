@@ -7,14 +7,17 @@ export default class ExtentedTable extends LightningDatatable {
     static customTypes = {
         image: {  // the name of the new datatype
             template: imageTemplate, // The HTML file that will get rendered
+            standardCellLayout: true,
             typeAttributes: ['height', 'width', 'alt']  // the attribute of custom data type that we have created
         },
         picklist: {
             template: picklistTemplate,
+            standardCellLayout: true,
             typeAttributes: ['name', 'label', 'value', 'placeholder', 'options', 'index', 'variant']
         },
         link: {
             template: linkTemplate,
+            standardCellLayout: true,
             typeAttributes: ["recordId", "recordName"]
         }
     };
