@@ -2,7 +2,7 @@
   "orgName": "PantherSchool Company",
   "edition": "Enterprise",
   "hasSampleData": true,
-  "username": "amit.singh@lwc-course-2023.org2",
+  "username": "amit.singh@lwc-course-2023.org6",
   "features": [
     "EnableSetPasswordInApi"
   ],
@@ -12,6 +12,9 @@
     },
     "mobileSettings": {
       "enableS1EncryptedStoragePref2": false
+    },
+    "quoteSettings": {
+      "enableQuote": true
     }
   }
 }
